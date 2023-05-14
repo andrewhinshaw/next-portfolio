@@ -33,7 +33,11 @@ export default function RootLayout({ children }) {
 							<SideNav />
 
 							{/* MAIN CONTENT */}
-							<div className="flex flex-col grow">{children}</div>
+							<div className="flex flex-col grow">
+								<main className="text-white p-6 font-normal flex min-h-screen w-full flex-col">
+								{children}
+								</main>
+								</div>
 						</div>
 					</div>
 				</AppContextProvider>

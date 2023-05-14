@@ -52,8 +52,6 @@ const AppWindowHeader = () => {
   }
 
 	const handleMenuClicked = () => {
-		console.log("old: ");
-		console.log("old: ", menuOpen);
 		setMenuOpen(!menuOpen);
 	}
 
