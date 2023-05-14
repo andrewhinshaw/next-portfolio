@@ -21,7 +21,7 @@ export default function Home() {
 
 	return (
 		<div>
-			<h1 className="text-2xl text-white">Hi, I'm Andrew 👋</h1>
+			<h1 className="text-2xl text-white">Hi, I&#39;m Andrew 👋</h1>
 		</div>
 		
 	);
