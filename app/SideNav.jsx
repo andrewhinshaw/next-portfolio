@@ -121,11 +121,11 @@ const SideNav = () => {
 	return (
 		<>
 			{menuOpen && size.width <= 768 ? (
-				<div className="md:relative absolute z-10 left-0 top-0 bottom-0 md:block w-60 md:basis-60 border-r-[1px] p-6 text-white overflow-auto shrink-0 border-white/30 dark:border-gray-500/30 text-sm font-normal">
+				<div className="md:relative absolute z-10 left-0 top-0 bottom-0 md:block w-60 md:basis-60 border-r-[1px] p-6 backdrop-blur-lg text-white overflow-auto shrink-0 border-white/30 dark:border-gray-500/30 text-sm font-normal">
           {SideNavContentsMarkup}
         </div>
 			) : (
-				<div className="hidden md:block basis-60 border-r-[1px] p-6 text-white overflow-auto shrink-0 border-white/30 dark:border-gray-500/30 text-sm font-normal">
+				<div className="hidden md:block basis-60 border-r-[1px] p-6 text-white overflow-auto shrink-0 backdrop-blur-lg border-white/30 dark:border-gray-500/30 text-sm font-normal">
           {SideNavContentsMarkup}
         </div>
 			)}
