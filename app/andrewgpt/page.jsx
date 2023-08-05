@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Dialog } from '@headlessui/react'
 import Image from "next/image";
+import useSWR from "swr";
 
 import AndrewGPTMessage from "../../components/AndrewGPTMessage";
 
@@ -165,8 +166,8 @@ const AndrewGPT = () => {
 							<button onClick={toggleSettingsMenu}>
 								<EllipsisHorizontalIcon className="w-6 h-6 text-white cursor-pointer" />
 							</button>
-							<div id="dropdown" class="absolute top-[40px] z-10 bg-gray-100 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" style={{ display: showSettingsMenu ? "" : "none" }}>
-								<ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+							<div id="dropdown" className="absolute top-[40px] z-10 bg-gray-100 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" style={{ display: showSettingsMenu ? "" : "none" }}>
+								<ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
 									<li onClick={handleOpenDeleteMessageHistoryModal} className="flex flex-row items-center px-3 py-2 text-red-600 dark:text-red-500 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">
 										<TrashIcon className="h-4 w-4 mr-2" />
 										Clear history
