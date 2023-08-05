@@ -12,7 +12,7 @@ const AndrewGPTMessage = (props) => {
 		<div className={`flex flex-row w-full pt-2 pr-1 ${isUserMessage ? "justify-end" : "justify-start"}`}>
 			<div
 				className={
-					"flex flex-row text-xs py-2 px-3 max-w-[75%] lg:max-w-[66%] rounded-xl " +
+					"flex flex-row text-xs py-2 px-3 max-w-[75%] lg:max-w-[66%] rounded-xl break-words " +
 					messageColors
 				}
 			>

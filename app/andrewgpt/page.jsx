@@ -35,16 +35,8 @@ const AndrewGPT = () => {
 			}
 
 			resetScroll();
-		
-			// Initialize textarea height to row height to remove phantom space
-			document.querySelector("#prompt-message").style.height = "1.25rem";
 
-			document
-				.querySelector("#prompt-message")
-				.addEventListener("input", function () {
-					this.style.height = "0px";
-					this.style.height = this.scrollHeight + "px";
-				});
+			resetTextAreaSizing();
 		}
 	}, []);
 
@@ -52,6 +44,24 @@ const AndrewGPT = () => {
 		let scroller = document.getElementById("scroller");
 		console.log(scroller);
 		scroller.scrollTop = scroller.scrollHeight - scroller.clientHeight;
+
+		document
+				.querySelector("#prompt-message")
+				.addEventListener("input", function () {
+					this.style.height = "0px";
+					this.style.height = this.scrollHeight + "px";
+				});
+	}
+
+	const resetTextAreaSizing = () => {
+		// Initialize textarea height to row height to remove phantom space
+		document.querySelector("#prompt-message").style.height = "1.25rem";
+		document
+			.querySelector("#prompt-message")
+			.addEventListener("input", function () {
+				this.style.height = "0px";
+				this.style.height = this.scrollHeight + "px";
+			});
 	}
 
 	const handlePromptChange = (e) => {
@@ -83,6 +93,7 @@ const AndrewGPT = () => {
 		localStorage.setItem("messageHistory", JSON.stringify(updatedMessageHistory));
 
 		setPrompt("");
+		resetTextAreaSizing();
 	};
 
 	const handleKeyDown = (e) => {
