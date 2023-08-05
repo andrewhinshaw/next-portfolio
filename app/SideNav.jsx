@@ -11,7 +11,9 @@ import {
 	ClipboardDocumentListIcon,
 	CommandLineIcon,
 	ChatBubbleLeftEllipsisIcon,
+	ChatBubbleLeftRightIcon,
 	EnvelopeIcon,
+	SparklesIcon
 } from "@heroicons/react/24/solid";
 
 const SideNav = () => {
@@ -32,7 +34,7 @@ const SideNav = () => {
 
 	const SideNavContentsMarkup = (
 		<>
-			<div className="text-sm text-gray-200 dark:text-gray-500 font-normal mb-2 ">
+			<div className="text-sm text-gray-200 dark:text-gray-400 font-normal mb-2 ">
 				Favorites
 			</div>
 			<p>{menuOpen}</p>
@@ -64,6 +66,19 @@ const SideNav = () => {
 				Projects
 			</Link>
 			<Link
+				href="/andrewgpt"
+				className={`flex flex-row justify-start items-center rounded-md p-2 ${
+					pathname == "/andrewgpt" ? styles.active : styles.inactive
+				}`}
+			>
+				<ChatBubbleLeftRightIcon className="w-4 h-4 mr-2" />
+				AndrewGPT
+				<span class="bg-blue-100 text-blue-500 text-xs font-medium ml-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-500 border dark:border-blue-500 flex flex-row items-center">
+					<SparklesIcon className="h-3 w-3 mr-1"/>
+					NEW
+				</span>
+			</Link>
+			<Link
 				href="/contact"
 				className={`flex flex-row justify-start items-center rounded-md p-2 ${
 					pathname == "/contact" ? styles.active : styles.inactive
@@ -73,7 +88,7 @@ const SideNav = () => {
 				Contact
 			</Link>
 
-			<div className="text-sm text-gray-200 dark:text-gray-500 font-normal mt-3 mb-2">
+			<div className="text-sm text-gray-200 dark:text-gray-400 font-normal mt-3 mb-2">
 				Connect
 			</div>
 
