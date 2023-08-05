@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Dialog } from '@headlessui/react'
+import { Dialog } from "@headlessui/react";
 import Image from "next/image";
 import useSWR from "swr";
 
@@ -12,7 +12,7 @@ import {
 	ChevronRightIcon,
 	EllipsisHorizontalCircleIcon,
 	EllipsisHorizontalIcon,
-	TrashIcon
+	TrashIcon,
 } from "@heroicons/react/24/solid";
 import { VideoCameraIcon } from "@heroicons/react/24/outline";
 import MemojiPFP from "../../public/memoji-pfp.png";
@@ -24,13 +24,14 @@ const AndrewGPT = () => {
 	const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 	const [prompt, setPrompt] = useState("");
 	const [messageHistory, setMessageHistory] = useState([]);
+	const [isResponding, setIsResponding] = useState(false);
 
 	useEffect(() => {
 		if (typeof window !== "undefined") {
 			// Get message history from storage
 			const loadedMessageHistory = localStorage.getItem("messageHistory");
 			if (loadedMessageHistory) {
-				const parsedMessageHistory = JSON.parse(loadedMessageHistory)
+				const parsedMessageHistory = JSON.parse(loadedMessageHistory);
 				setMessageHistory(parsedMessageHistory);
 			}
 
@@ -42,16 +43,15 @@ const AndrewGPT = () => {
 
 	const resetScroll = () => {
 		let scroller = document.getElementById("scroller");
-		console.log(scroller);
 		scroller.scrollTop = scroller.scrollHeight - scroller.clientHeight;
 
 		document
-				.querySelector("#prompt-message")
-				.addEventListener("input", function () {
-					this.style.height = "0px";
-					this.style.height = this.scrollHeight + "px";
-				});
-	}
+			.querySelector("#prompt-message")
+			.addEventListener("input", function () {
+				this.style.height = "0px";
+				this.style.height = this.scrollHeight + "px";
+			});
+	};
 
 	const resetTextAreaSizing = () => {
 		// Initialize textarea height to row height to remove phantom space
@@ -62,93 +62,131 @@ const AndrewGPT = () => {
 				this.style.height = "0px";
 				this.style.height = this.scrollHeight + "px";
 			});
-	}
+	};
 
 	const handlePromptChange = (e) => {
 		setPrompt(e.target.value);
 	};
 
-	const handlePromptSubmit = (e) => {
+	const handlePromptSubmit = async (e) => {
 		e.preventDefault();
 
+		// Get the message text from the textarea in the form
 		let messageText = "";
-
 		if (e.target.name == "promptmessage") {
 			messageText = e.target.value;
 		} else {
 			messageText = e.target.promptmessage.value;
 		}
 
-		const updatedMessageHistory = [
+		// Update message history immediately after the user's message is submitted
+		const updatedMessageHistoryAfterUser = [
 			...messageHistory,
 			{
 				messageId: messageHistory.length + 1,
 				messageText: messageText,
 				isUserMessage: true,
-				messageTimestamp: Date.now()
-			}
-		]
-
-		setMessageHistory(updatedMessageHistory);
-		localStorage.setItem("messageHistory", JSON.stringify(updatedMessageHistory));
+				messageTimestamp: Date.now(),
+			},
+		];
+		setMessageHistory(updatedMessageHistoryAfterUser);
+		localStorage.setItem(
+			"messageHistory",
+			JSON.stringify(updatedMessageHistoryAfterUser)
+		);
 
 		setPrompt("");
 		resetTextAreaSizing();
+
+		// Send the user message to the backend to be processed
+		setIsResponding(true);
+		const response = await fetch("/api/andrewgpt/send", {
+			method: "POST",
+			body: JSON.stringify({
+				messageText: messageText,
+			}),
+		});
+		const data = await response.json();
+		
+		// Update message history immediately after the user's message is submitted
+		const updatedMessageHistoryAfterResponse = [
+			...updatedMessageHistoryAfterUser,
+			{
+				messageId: updatedMessageHistoryAfterUser.length + 1,
+				messageText: data.responseMessageText,
+				isUserMessage: false,
+				messageTimestamp: Date.now(),
+			},
+		];
+		setMessageHistory(updatedMessageHistoryAfterResponse);
+		localStorage.setItem(
+			"messageHistory",
+			JSON.stringify(updatedMessageHistoryAfterResponse)
+		);
+
+		setIsResponding(false);
 	};
 
 	const handleKeyDown = (e) => {
-		if(e.keyCode == 13 && e.shiftKey == false) {
+		if (e.keyCode == 13 && e.shiftKey == false) {
 			e.preventDefault();
 			handlePromptSubmit(e);
 		}
-	}
+	};
 
 	const toggleSettingsMenu = (e) => {
 		e.preventDefault();
-		console.log(showSettingsMenu);
 		setShowSettingsMenu(!showSettingsMenu);
-	}
+	};
 
 	const handleOpenDeleteMessageHistoryModal = () => {
 		setIsDeleteModalOpen(true);
-	}
+	};
 
 	const handleDeleteMessageHistory = () => {
 		localStorage.setItem("messageHistory", JSON.stringify([]));
 		setMessageHistory([]);
 		setIsDeleteModalOpen(false);
-	}
+	};
 
 	return (
 		<div
 			className="flex flex-col h-full w-full border-red-500"
 			style={{ borderWidth: debug ? "1px" : "0px" }}
 		>
-			<Dialog as="div" className="relative z-50" open={isDeleteModalOpen} onClose={() => setIsDeleteModalOpen(false)}>
-			<div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
+			<Dialog
+				as="div"
+				className="relative z-50"
+				open={isDeleteModalOpen}
+				onClose={() => setIsDeleteModalOpen(false)}
+			>
+				<div className="fixed inset-0 overflow-y-auto">
+					<div className="flex min-h-full items-center justify-center p-4 text-center">
 						<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-						<Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
-                  >Delete history</Dialog.Title>
-					<div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Your payment has been successfully submitted. We’ve sent
-                      you an email with all of the details of your order.
-                    </p>
-                  </div>
-									<div className="mt-4">
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={handleDeleteMessageHistory}
-                    >
-                      Delete
-                    </button>
-                  </div>
-				</Dialog.Panel>
-				</div>
+							<Dialog.Title
+								as="h3"
+								className="text-lg font-medium leading-6 text-gray-900"
+							>
+								Delete history
+							</Dialog.Title>
+							<div className="mt-2">
+								<p className="text-sm text-gray-500">
+									Your payment has been successfully
+									submitted. We’ve sent you an email with all
+									of the details of your order.
+								</p>
+							</div>
+							<div className="mt-4">
+								<button
+									type="button"
+									className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+									onClick={handleDeleteMessageHistory}
+								>
+									Delete
+								</button>
+							</div>
+						</Dialog.Panel>
+					</div>
 				</div>
 			</Dialog>
 			<div
@@ -177,14 +215,28 @@ const AndrewGPT = () => {
 							<button onClick={toggleSettingsMenu}>
 								<EllipsisHorizontalIcon className="w-6 h-6 text-white cursor-pointer" />
 							</button>
-							<div id="dropdown" className="absolute top-[40px] z-10 bg-gray-100 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700" style={{ display: showSettingsMenu ? "" : "none" }}>
-								<ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-									<li onClick={handleOpenDeleteMessageHistoryModal} className="flex flex-row items-center px-3 py-2 text-red-600 dark:text-red-500 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">
+							<div
+								id="dropdown"
+								className="absolute top-[40px] z-10 bg-gray-100 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+								style={{
+									display: showSettingsMenu ? "" : "none",
+								}}
+							>
+								<ul
+									className="py-2 text-sm text-gray-700 dark:text-gray-200"
+									aria-labelledby="dropdownDefaultButton"
+								>
+									<li
+										onClick={
+											handleOpenDeleteMessageHistoryModal
+										}
+										className="flex flex-row items-center px-3 py-2 text-red-600 dark:text-red-500 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer"
+									>
 										<TrashIcon className="h-4 w-4 mr-2" />
 										Clear history
 									</li>
 								</ul>
-						</div>
+							</div>
 						</div>
 					</div>
 					<div className="flex flex-row justify-center items-center w-full">
@@ -202,19 +254,28 @@ const AndrewGPT = () => {
 			>
 				<div className="flex flex-col-reverse min-h-full">
 					<div className="flex flex-col">
-					{messageHistory.map((item) => {
-						return (
-							<AndrewGPTMessage isUserMessage={item?.isUserMessage} messageText={item?.messageText} key={item.messageId} />
-						);
-					})}
-				</div>
+						{messageHistory.map((item) => {
+							return (
+								<AndrewGPTMessage
+									isUserMessage={item?.isUserMessage}
+									messageText={item?.messageText}
+									messageTimestamp={item?.messageTimestamp}
+									key={item.messageId}
+								/>
+							);
+						})}
+					</div>
 				</div>
 			</div>
 			<div
 				className="flex flex-row items-center min-h-12 pt-6 w-full border-red-500"
 				style={{ borderWidth: debug ? "1px" : "0px" }}
 			>
-				<form action="" className="w-full h-full" onSubmit={handlePromptSubmit}>
+				<form
+					action=""
+					className="w-full h-full"
+					onSubmit={handlePromptSubmit}
+				>
 					<div className="flex flex-row w-full h-full py-2 px-3 rounded-2xl border-[1px] border-white/30 dark:border-gray-500/30">
 						<textarea
 							id="prompt-message"
