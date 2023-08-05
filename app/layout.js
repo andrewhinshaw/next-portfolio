@@ -26,15 +26,15 @@ export default function RootLayout({ children }) {
 			>
 				<AppContextProvider>
 					<Background />
-					<div className="app-window flex flex-col overflow-hidden relative w-full rounded-xl backdrop-blur-xl text-base font-medium max-w-[1250px] max-h-[860px] h-[90vh] bg-white/30 dark:bg-gray-900/40">
+					<div className="app-window flex flex-col overflow-hidden relative w-full rounded-xl backdrop-blur-xl text-base font-medium max-w-[1250px] max-h-[860px] h-[90vh] bg-white/30 dark:bg-gray-900/40 transition-all">
 						<AppWindowHeader />
 						<div className="relative flex flex-grow overflow-hidden">
 							{/* SIDE NAV */}
 							<SideNav />
 
 							{/* MAIN CONTENT */}
-							<div className="flex flex-col grow">
-								<main className="text-white p-6 font-normal flex min-h-screen w-full flex-col">
+							<div className="flex flex-col h-full w-full">
+								<main className="text-white p-6 font-normal flex h-full w-full flex-col">
 								{children}
 								</main>
 								</div>
