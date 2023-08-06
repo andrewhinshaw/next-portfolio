@@ -63,15 +63,15 @@ const AppWindowHeader = () => {
 				onMouseOver={() => setWindowOptionsHovered(true)}
 				onMouseOut={() => setWindowOptionsHovered(false)}
 			>
-				<div className="rounded-full w-3.5 h-3.5 mr-2 bg-red-500 text-red-900">
-					{windowOptionsHovered && <XMarkIcon className="w-full" />}
+				<div className="rounded-full w-3.5 h-3.5 mr-2 bg-[#FF605C] text-red-800">
+					{windowOptionsHovered && <XMarkIcon className="w-full h-full" />}
 				</div>
-				<div className="rounded-full w-3.5 h-3.5 mr-2 bg-yellow-500 text-yellow-900">
-					{windowOptionsHovered && <MinusIcon className="w-full" />}
+				<div className="rounded-full w-3.5 h-3.5 mr-2 bg-[#FFBD44] text-yellow-800">
+					{windowOptionsHovered && <MinusIcon className="w-full h-full" />}
 				</div>
-				<div className="rounded-full w-3.5 h-3.5 p-0.5 mr-2 bg-green-500 text-green-900">
+				<div className="rounded-full w-3.5 h-3.5 mr-2 bg-[#00CA4E] text-green-800">
 					{windowOptionsHovered && (
-						<ArrowsPointingOutIcon className="w-full" />
+						<ArrowsPointingOutIcon className="w-full h-full" />
 					)}
 				</div>
 			</div>
