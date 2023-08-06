@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import Image from "next/image";
-import useSWR from "swr";
 
 import AndrewGPTMessage from "../../components/AndrewGPTMessage";
 
