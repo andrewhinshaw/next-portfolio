@@ -264,6 +264,15 @@ const AndrewGPT = () => {
 								/>
 							);
 						})}
+						{isResponding && (
+							<div className="flex flex-row w-full pt-2 pr-1 jutify-start">
+								<div className="relative flex flex-row p-3 rounded-2xl bg-gray-300 dark:bg-gray-700">
+									<div className="dot1anim h-2 w-2 rounded-full bg-gray-400 mr-1"></div>
+									<div className="dot2anim h-2 w-2 rounded-full bg-gray-400 mr-1"></div>
+									<div className="dot3anim h-2 w-2 rounded-full bg-gray-400"></div>
+								</div>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
@@ -285,6 +294,7 @@ const AndrewGPT = () => {
 							onChange={handlePromptChange}
 							onKeyDown={handleKeyDown}
 							value={prompt}
+							disabled={isResponding}
 							className="flex items-center justify-center w-full h-full mr-2 bg-transparent border-none resize-none p-0 m-0 focus:ring-0 focus-visible:ring-0 text-sm placeholder:text-gray-300 dark:placeholder:text-gray-500"
 						/>
 						<div className="flex items-end justify-end h-full">

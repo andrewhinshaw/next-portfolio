@@ -94,7 +94,7 @@ const AndrewGPTMessage = (props) => {
 			>
 				<div
 					className={
-						"flex flex-row text-xs py-2 px-3 max-w-[75%] lg:max-w-[66%] rounded-xl break-words " +
+						"flex flex-row text-xs py-2 px-3 max-w-[75%] lg:max-w-[66%] rounded-2xl break-words " +
 						messageColors
 					}
 				>
