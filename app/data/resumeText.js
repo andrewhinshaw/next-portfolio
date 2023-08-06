@@ -1,0 +1,57 @@
+const resumeText = `
+Andrew Hinshaw
+San Diego, CA · linkedin.com/in/andrew-hinshaw
+707-260-4740 · andrewthinshaw@gmail.com
+________________
+
+SUMMARY
+Meticulous Data Analyst with 4 years of experience designing, implementing, and monitoring software solutions to analyze and report on complex business problems. Experience collaborating effectively with teams of various disciplines including product management, operations, engineering, and others to provide concise and actionable performance insights.
+
+SKILLS
+Python · SQL (MySQL, SQLite, SQL Server) · NoSQL (MongoDB, Redis) · RESTful APIs · Confluence & Jira ·  Excel · Data Visualization & BI Tools (Mode Analytics) · Query Analysis & Optimization · Data Modeling · Data Warehousing (Azure) · ETL & ELT · Automation
+
+EXPERIENCE
+Calpine Energy Solutions — San Diego, CA        
+IS Business Analyst        January 2023 - Present
+* Worked closely with engineering teams to resolve dozens of systemic data issues by using exploratory data analysis to find patterns and identify root causes of issues
+* Maintained direct and prompt communication with business users while running ad-hoc reports, solving critical data issues, and managing data update requests
+* Prepared product updates to be promoted to production environments by conducting full coverage testing in development environments
+* Created roadmaps by working closely with product managers to define goals and timelines
+* Cut 10+ hours per week of manual data entry by implementing data 
+
+UPSTREM, INC. — San Diego, CA        
+Data Analyst        February 2020 - December 2022
+* Reduced manual reporting input by 12+ hours per week by writing clean and well-tested code in Python, SQL, and other technologies to create automated systems to improve the efficiency and accuracy of reporting and other back-end business processes
+* Created clear and concise reports to provide valuable insights into key business performance metrics by using Mode Analytics and MySQL
+* Used root cause analysis to investigate and resolve complex issues in a database with tens of millions of records
+* Defined and took ownership of key business metrics by creating and organizing thorough technical documentation in Confluence including database schemas, reporting and business process outlines, and data flows
+* Helped educate team members in other disciplines by providing technical training and guidance to help them gain a better understanding of our database structure and its models
+
+UPSTREM, INC. — San Diego, CA
+Marketplace Analyst        August 2019 - February 2020
+* Collected and analyzed sales, inventory, order, and other marketplace data to create solutions to maximize performance and growth of our online presence
+* Helped senior leadership and team members in other departments make more informed business decisions by conducting A/B testing to compare marketplace strategies
+* Utilized debugging and problem-solving techniques to fix large-scale marketplace issues
+* Led projects through clear communication and organization by coordinating resources across multiple departments
+
+PROJECTS
+Interactive Spotify Downloader & Analyzer        
+Demo: gotangible.vercel.app        Code: gitfront.io/r/andrewhinshaw/t3NyMSPTG9zM/gotangible
+* Created a web3 application using React and NextJS that allows users to connect their ethereum wallet and create physical products from their owned assets
+* Implemented a data pipeline using the OpenSea REST API to retrieve and display NFT data for the connected wallet including asset and collection metadata, images, etc.
+* Added custom shopping cart functionality to implement payment via the Stripe Checkout REST API
+
+Web3 NFT eCommerce App        
+Demo: gotangible.vercel.app        Code: gitfront.io/r/andrewhinshaw/t3NyMSPTG9zM/gotangible
+* Created a web3 application using React and NextJS that allows users to connect their ethereum wallet and create physical products from their owned assets
+* Implemented a data pipeline using the OpenSea REST API to retrieve and display NFT data for the connected wallet including asset and collection metadata, images, etc.
+* Added custom shopping cart functionality to implement payment via the Stripe Checkout REST API
+
+CERTIFICATIONS
+Microsoft Certified: Azure Data Fundamentals         May 2023
+
+EDUCATION
+San Diego State University         Bachelor of Science in Computer Science
+`;
+
+export default resumeText;

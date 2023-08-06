@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
+import path from "path";
 
 import { OpenAI } from "langchain/llms/openai";
 import { loadQAStuffChain } from "langchain/chains";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
+
+const DATA_PATH = path.resolve("app/data/Resume.pdf");
 
 const generateResponse = async (messageText) => {
   // Initialize openai llm and langchain stuff chain
@@ -10,7 +13,7 @@ const generateResponse = async (messageText) => {
   const chainA = loadQAStuffChain(llmA);
 
   // Load PDF file
-  const loader = new PDFLoader("data/Resume.pdf");
+  const loader = new PDFLoader(DATA_PATH);
   const docs = await loader.load();
 
   // Submit the documents and question for response
