@@ -44,13 +44,6 @@ const AndrewGPT = () => {
 	const resetScroll = () => {
 		let scroller = document.getElementById("scroller");
 		scroller.scrollTop = scroller.scrollHeight - scroller.clientHeight;
-
-		document
-			.querySelector("#prompt-message")
-			.addEventListener("input", function () {
-				this.style.height = "0px";
-				this.style.height = this.scrollHeight + "px";
-			});
 	};
 
 	const resetTextAreaSizing = () => {
@@ -97,9 +90,12 @@ const AndrewGPT = () => {
 
 		setPrompt("");
 		resetTextAreaSizing();
+		resetScroll();
 
 		// Send the user message to the backend to be processed
 		setIsResponding(true);
+		resetScroll();
+
 		const response = await fetch("/api/andrewgpt/send", {
 			method: "POST",
 			body: JSON.stringify({
@@ -125,6 +121,7 @@ const AndrewGPT = () => {
 		);
 
 		setIsResponding(false);
+		resetScroll();
 	};
 
 	const handleKeyDown = (e) => {
@@ -162,7 +159,7 @@ const AndrewGPT = () => {
 			>
 				<div className="fixed inset-0 overflow-y-auto">
 					<div className="flex min-h-full items-center justify-center p-4 text-center">
-						<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+						<Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl">
 							<Dialog.Title
 								as="h3"
 								className="text-lg font-medium leading-6 text-gray-900"
@@ -199,7 +196,7 @@ const AndrewGPT = () => {
 							<ChevronLeftIcon className="w-6 h-6 text-white cursor-pointer" />
 						</div>
 						<div className="flex w-1/3 justify-center items-center">
-							<div className="relative flex rounded-full h-12 w-12 bg-white/50 dark:bg-gray-500/30 p-[5px] cursor-pointer transition-all">
+							<div className="relative flex rounded-full h-12 w-12 bg-white/50 dark:bg-gray-500/30 p-[5px] cursor-pointer">
 								<div className="relative flex h-full w-full">
 									<Image
 										src={MemojiPFP}

@@ -83,7 +83,7 @@ const AndrewGPTMessage = (props) => {
 	return (
 		<>
 			{isUserMessage && (
-				<div className="flex flex-row w-full justify-center text-xs text-gray-300">
+				<div className="flex flex-row w-full pt-2 justify-center text-xs text-gray-300">
 					{getDateFormatted()}
 				</div>
 			)}

@@ -23,13 +23,13 @@ const Background = () => {
 				src={BackgroundImageDark}
 				alt="MacOS stock wallpaper dark"
 				fill={true}
-				className="-z-10 opacity-0 dark:opacity-100 transition-opacity"
+				className="-z-10 hidden dark:block"
 			/> 
 			<Image
 				src={BackgroundImageLight}
 				alt="MacOS stock wallpaper light"
 				fill={true}
-				className="-z-10 opacity-100 dark:opacity-0 transition-opacity"
+				className="-z-10 block dark:hidden"
 			/>
 			
 		</div>

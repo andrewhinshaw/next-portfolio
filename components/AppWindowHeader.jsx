@@ -113,7 +113,7 @@ const AppWindowHeader = () => {
 				<div className="hidden md:flex justify-center items-center mr-2 text-sm">
 					<div
 						id="search-bar"
-						className="flex flex-row justify-start items-center font-normal h-9 rounded-md transition-all bg-gray-100/20 dark:bg-gray-700/30"
+						className="flex flex-row justify-start items-center font-normal h-9 rounded-md bg-gray-100/20 dark:bg-gray-700/30"
 						style={{ width: searchFocused ? "18rem" : "10rem" }}
 					>
 						<MagnifyingGlassIcon className="text-sm text-white h-6 w-6 ml-2 cursor-pointer" />
