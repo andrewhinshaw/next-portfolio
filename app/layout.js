@@ -5,7 +5,7 @@ import AppWindowHeader from "@/components/AppWindowHeader";
 import Background from "@/components/Background";
 
 import Link from "next/link";
-import SideNav from "./SideNav";
+import SideNav from "@/components/SideNav";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
