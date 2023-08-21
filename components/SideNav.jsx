@@ -78,7 +78,7 @@ const SideNav = () => {
 					NEW
 				</span>
 			</Link>
-			<Link
+			{/* <Link
 				href="/contact"
 				className={`flex flex-row justify-start items-center rounded-md p-2 ${
 					pathname == "/contact" ? styles.active : styles.inactive
@@ -86,7 +86,7 @@ const SideNav = () => {
 			>
 				<ChatBubbleLeftEllipsisIcon className="w-4 h-4 mr-2" />
 				Contact
-			</Link>
+			</Link> */}
 
 			<div className="text-sm text-gray-200 dark:text-gray-400 font-normal mt-3 mb-2">
 				Connect
