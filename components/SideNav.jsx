@@ -21,7 +21,7 @@ const SideNav = () => {
   const size = useWindowSize();
 
 	const { menuOpen, setMenuOpen } = useAppContext();
-	console.log(menuOpen);
+	
 	const styles = {
 		active: "dark:bg-gray-300/10 bg-gray-700/20",
 		inactive:
