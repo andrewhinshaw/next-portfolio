@@ -20,7 +20,6 @@ const AppWindowHeader = () => {
 
 	const { menuOpen, setMenuOpen } = useAppContext();
 
-	console.log(menuOpen);
 	useEffect(() => {
 		if (typeof window !== "undefined") {
 			setPageLoaded(true);

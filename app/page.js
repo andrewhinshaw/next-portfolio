@@ -12,6 +12,7 @@ import {
 	ChevronLeftIcon,
 } from "@heroicons/react/24/solid";
 import useEmblaCarousel from "embla-carousel-react";
+import TextTruncate from 'react-text-truncate';
 
 import SkillsIcons from "@/components/SkillsIcons";
 import projectsList from "@/app/data/projects";
@@ -200,7 +201,7 @@ export default function Home() {
 					className="grid gap-4"
 					style={{ gridTemplateRows: "min-content" }}
 				>
-					<div className="grid grid-cols-2 gap-4">
+					<div className="grid grid-cols-2 gap-4 max-w-full">
 						<div className="h-full rounded-lg bg-gray-100/20 dark:bg-gray-700/30 col-span-1 border border-gray-100/30 dark:border-gray-700/50 shadow-lg p-3">
 							<h2 className="text-xl font-medium dark:text-white mb-3">
 								Skills
@@ -258,13 +259,13 @@ export default function Home() {
 							/>
 						</div>
 					</div>
-					<div className="h-full rounded-lg bg-gray-100/20 dark:bg-gray-700/30 col-span-1 border border-gray-100/30 dark:border-gray-700/50 shadow-lg p-3">
-						<div className="flex flex-col w-full h-full max-h-full">
+					<div className="h-full w-auto max-w-full rounded-lg bg-gray-100/20 dark:bg-gray-700/30 col-span-1 border border-gray-100/30 dark:border-gray-700/50 shadow-lg p-3">
+						<div className="flex flex-col w-full max-w-inherit h-full max-h-full">
 							<div className="flex flex-row justify-between items-center w-full">
 								<h2 className="text-xl font-medium dark:text-white mb-2">
 									Projects
 								</h2>
-								<div className="flex flex-row h-full items-start">
+								{/* <div className="flex flex-row h-full items-start">
 									<button
 										className="p-1 rounded-md bg-transparent dark:hover:bg-gray-300/10 hover:bg-gray-700/20 mr-2"
 										onClick={scrollPrev}
@@ -277,33 +278,37 @@ export default function Home() {
 									>
 										<ChevronRightIcon className="w-5 h-5" />
 									</button>
-								</div>
+								</div> */}
 							</div>
 
-							<div className=" flex flex-col justify-start items-center w-full h-auto flex-grow rounded-lg mb-2">
+							<div className=" flex flex-col justify-start items-center w-full max-w-full h-auto flex-grow rounded-lg mb-2">
 								<div
-									className="embla relative w-full h-full"
+									className="embla relative w-full max-w-full h-full"
 									ref={emblaRef}
 								>
-									<div className="embla__container w-full h-full">
-										{projectsList.map((item, index) => {
+									<div className="embla__container flex flex-shrink w-full max-w-full h-full">
+										{projectsList.slice(0, 1).map((item, index) => {
 											return (
 												<div
-													className="embla__slide flex flex-col justify-between w-full max-h-full text-xs p-2 mb-2 rounded-md text-white border border-gray-100/30 dark:border-gray-600/50"
+													className="embla__slide flex flex-col justify-between max-w-full w-full max-h-full text-xs p-2 mb-2 rounded-md text-white border border-gray-100/30 dark:border-gray-600/50"
 													key={index}
 												>
-													<div className="flex flex-col">
+													<div className="flex flex-col flex-wrap">
 														<h3 className="text-sm font-semibold">
 															{item.title}
 														</h3>
 														<h4 className="italic mb-1">
 															{item.subtitle}
 														</h4>
-														<p className="">
-															{item.description}
-														</p>
+														<TextTruncate 
+															className=""
+															line={2}
+															element="p"
+															truncateText="..."
+															text={item.description}
+														/>
 													</div>
-													<div className="flex flex-row">
+													<div className="flex flex-row flex-wrap">
 														{item.tags.map(
 															(
 																itemTag,
@@ -311,7 +316,7 @@ export default function Home() {
 															) => {
 																return (
 																	<span
-																		class="bg-blue-100 text-blue-500 text-xs font-medium mr-1 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-500 border dark:border-blue-500 flex flex-row items-center"
+																		class="bg-gray-100 text-gray-500 text-xs font-medium mr-1 mt-1 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-400 border dark:border-gray-400 flex flex-row items-center"
 																		key={
 																			indexTag
 																		}
