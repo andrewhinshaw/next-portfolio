@@ -1,28 +1,28 @@
 
 const projectsList = [
   {
-    title: "Congress Tweets Sentiment",
-    subtitle: "Analyzing Tweet Sentiment Using DuckDB and Streamlit",
-    description: "Analyzed and visualized Congressional tweet data on a streamlit dashboard using SQL and Python. We demonstrate how to use pandas, parquet, and DuckDB for highly optimized data storage and retrieval.",
+    title: "Congress Tweets Sentiment Analysis",
+    subtitle: "Analyzing Tweet Sentiment Using Snowflake and Hex",
+    description: "Analyzed and visualized congressional tweet data on a Hex app using SQL and Python. We demonstrate how to use pandas, parquet, and Snowflake for highly optimized data storage and retrieval.",
     tags: [
       "python",
       "sql",
       "pandas",
-      "duckdb",
+      "snowflake",
       "parquet",
-      "streamlit",
+      "hex",
       "data viz",
     ],
     links: [
       {
         source: "github",
-        url: "https://github.com/andrewhinshaw/congress-tweets-streamlit",
-        status: "active"
+        url: "https://app.hex.tech/e81867ee-8a53-48d0-b609-c1745a75a985/app/1a331f69-71a9-4396-8b10-a84786d032c9/latest",
+        status: "inactive"
       },
       {
         source: "web",
-        url: "https://google.com",
-        status: "inactive"
+        url: "https://app.hex.tech/e81867ee-8a53-48d0-b609-c1745a75a985/app/1a331f69-71a9-4396-8b10-a84786d032c9/latest",
+        status: "active"
       },
     ]
   },
